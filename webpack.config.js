@@ -50,7 +50,7 @@ module.exports = {
     new HttpWebpackPlugin({
       hash: true,
       filename: "index.html",
-      template: "./src/public/index.html"
+      template: "./public/index.html"
     }),
     new MiniCssExtractPlugin({ filename: 'assets/css/styles.css'})
   ]

@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
+  devtool: 'source-map',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, "/dist"),
@@ -49,8 +50,8 @@ module.exports = {
     new HttpWebpackPlugin({
       hash: true,
       filename: "index.html",
-      template: "./src/public/index.html"
+      template: "./public/index.html"
     }),
-    new MiniCssExtractPlugin({ filename: './src/css/styles.css'})
+    new MiniCssExtractPlugin({ filename: 'assets/css/styles.css'})
   ]
 }
