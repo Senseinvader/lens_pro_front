@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
+
+  navContent = () => {
+    return (
+      <Fragment>
+      <ul>
+        <li><Link to={"/work"}>Work</Link></li>
+        <li><Link to={"/blog"}>Blog</Link></li>
+        <li><Link to={"/about"}>About</Link></li>
+      </ul>
+      <div className="logout-button">
+        <button onClick={this.props.logOut}>Logout</button>
+      </div>
+      </Fragment>
+    )
+  }
 
   render() {
     const {isLoggedIn} = this.props;
     return (
       <nav className="nav-container">
         <div className="nav-section">
-          {isLoggedIn 
-            ? 
-            (<ul>
-              <li><Link to={"/work"}>Work</Link></li>
-              <li><Link to={"/blog"}>Blog</Link></li>
-              <li><Link to={"/about"}>About</Link></li>
-          </ul>)
-          : 
-          (<div className="login">
-            <button onClick={this.loginHandler}>Login</button>
-          </div>)
-        }
+          {this.navContent()}
         </div>
       </nav>
     )
@@ -35,7 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    logOut: () => {dispatch({type: 'USER_LOGGED_OUT'})}
   }
 }
 
