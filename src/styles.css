@@ -15,9 +15,18 @@
   color: red;
 }
 
-.navbar {
+.navbar,
+.blogs-container {
   display: flex;
 }
 .navbar-collapse {
   justify-content: space-between;
+}
+.card {
+  width: 90vw;
+  margin: 5px 0;
+}
+.blogs-container {
+  flex-direction: column;
+  align-items: center;
 }
