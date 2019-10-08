@@ -6,13 +6,12 @@ import {onInputChange, checkEmail, checkPassword, handleSubmit} from '../actions
 class Login extends Component {
 
   submitForm = () => e => {
-    console.log('submitting')
     e.preventDefault();
     this.props.submitForm();
   }
 
   render() {
-    if(this.props.isLoggedIn) {
+    if(localStorage.getItem('isLoggedIn')) {
       return <Redirect to='work'/>
     }
     const {email, password, errorMessage} = this.props;
@@ -20,8 +19,8 @@ class Login extends Component {
       <div className="login-container">
         <div className="form-container">
           <form onSubmit={this.submitForm()}>
-            <div class="form-group ">
-              <label for="emailInput">Email address</label>
+            <div className="form-group ">
+              <label forHtml="emailInput">Email address</label>
               <input
                 type="email"
                 value={email}

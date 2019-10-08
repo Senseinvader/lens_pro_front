@@ -39,7 +39,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logOut: () => {dispatch({type: 'USER_LOGGED_OUT'})}
+    logOut: () => {
+      localStorage.removeItem('isLoggedIn');
+      dispatch({type: 'USER_LOGGED_OUT'});
+    }
   }
 }
 

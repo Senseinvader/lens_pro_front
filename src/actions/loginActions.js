@@ -30,9 +30,12 @@ export const checkPassword = () => {
 export const handleSubmit = () => {
   return (dispatch, getState) => {
     const {email, password} = getState().loginReducer;
-    (email==='admin@mail.com' && password==='123')
-    ? dispatch(handleLogin())
-    : dispatch(sendErrorMessage('User with these credentials does not exist'))
+    if (email==='admin@mail.com' && password==='123') {
+      localStorage.setItem('isLoggedIn', '1');
+      dispatch(handleLogin());
+    } else {
+      dispatch(sendErrorMessage('User with these credentials does not exist'));
+    }
   }
 }
 
