@@ -14,3 +14,10 @@
   height: 2.5rem;
   color: red;
 }
+
+.navbar {
+  display: flex;
+}
+.navbar-collapse {
+  justify-content: space-between;
+}

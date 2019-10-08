@@ -7,23 +7,28 @@ class Header extends Component {
   navContent = () => {
     return (
       <Fragment>
-      <ul>
-        <li><Link to={"/work"}>Work</Link></li>
-        <li><Link to={"/blog"}>Blog</Link></li>
-        <li><Link to={"/about"}>About</Link></li>
-      </ul>
-      <div className="logout-button">
-        <button type="button" onClick={this.props.logOut} className="btn btn-info">Logout</button>
-      </div>
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            <a className="nav-link" href="#"><Link to={"/work"}>Work</Link></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#"><Link to={"/blog"}>Blog</Link></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#"><Link to={"/about"}>About</Link></a>
+          </li>
+        </ul>
+        <div className="logout-button">
+          <button type="button" onClick={this.props.logOut} className="btn btn-info">Logout</button>
+        </div>
       </Fragment>
     )
   }
 
   render() {
-    const {isLoggedIn} = this.props;
     return (
-      <nav className="nav-container">
-        <div className="nav-section">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="collapse navbar-collapse" id="navbarNav">
           {this.navContent()}
         </div>
       </nav>

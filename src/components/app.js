@@ -17,7 +17,6 @@ class App extends Component {
           ? (<Redirect to="login"/>)
           : (<div className="app-div">
             <Header/>
-              <h1>Hi there!</h1>
               <Route path="/work" component={Work}/>
               <Route path="/blog" component={Blog}/>
               <Route path="/about" component={About}/>
