@@ -20,10 +20,28 @@ class Login extends Component {
       <div className="login-container">
         <div className="form-container">
           <form onSubmit={this.submitForm()}>
-            <input type="email" value={email} onBlur={this.props.checkEmail} onChange={(e)=>this.props.onInputChange(e)}/>
-            <input type="password" value={password} onBlur={this.props.checkPassword} onChange={(e)=>this.props.onInputChange(e)}/>
+            <div class="form-group ">
+              <label for="emailInput">Email address</label>
+              <input
+                type="email"
+                value={email}
+                className="form-control form-control-lg"
+                id="emailInput"
+                onBlur={this.props.checkEmail}
+                onChange={(e)=>this.props.onInputChange(e)}/>
+            </div>
+            <div className="form-group">
+              <label for="passwordInput">Email address</label>
+              <input
+                type="password"
+                value={password}
+                className="form-control form-control-lg"
+                id="passwordInput"
+                onBlur={this.props.checkPassword}
+                onChange={(e)=>this.props.onInputChange(e)}/>
+            </div>
             <div className="error-message">{errorMessage}</div>
-            <button type="submit">Login</button>
+            <button type="submit" className="btn btn-info">Login</button>
           </form>
         </div>
       </div>

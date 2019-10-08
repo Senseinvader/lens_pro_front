@@ -1,0 +1,16 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container {
+  width: 60vw;
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 40px;
+}
+.error-message {
+  height: 2.5rem;
+  color: red;
+}

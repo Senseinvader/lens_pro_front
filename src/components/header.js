@@ -13,7 +13,7 @@ class Header extends Component {
         <li><Link to={"/about"}>About</Link></li>
       </ul>
       <div className="logout-button">
-        <button onClick={this.props.logOut}>Logout</button>
+        <button type="button" onClick={this.props.logOut} className="btn btn-info">Logout</button>
       </div>
       </Fragment>
     )
