@@ -8,14 +8,14 @@ class Header extends Component {
     return (
       <Fragment>
         <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" href="#"><Link to={"/work"}>Work</Link></a>
+          <li className="nav-item">
+            <Link className="nav-link" to={"/work"}>Work</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#"><Link to={"/blog"}>Blog</Link></a>
+            <Link className="nav-link" to={"/blog"}>Blog</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#"><Link to={"/about"}>About</Link></a>
+            <Link className="nav-link" to={"/about"}>About</Link>
           </li>
         </ul>
         <div className="logout-button">

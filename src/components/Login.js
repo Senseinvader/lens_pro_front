@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {onInputChange, checkEmail, checkPassword, handleSubmit} from '../actions/loginActions';
+import {onInputChange, checkEmail, checkPassword, handleSubmit} from '../store/actions/loginActions';
 
 class Login extends Component {
 
