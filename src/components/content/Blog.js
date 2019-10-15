@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {blogs} from '../helpers/blogs';
-import {fetchBlogPosts} from '../store/actions/contentActions';
+import {blogs} from '../../helpers/blogs';
+import {fetchBlogPosts} from '../../store/actions/contentActions';
 
 class Blog extends Component {
   constructor(props) {

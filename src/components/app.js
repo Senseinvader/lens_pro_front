@@ -3,16 +3,18 @@ import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import Header from './header';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Work from './Work';
-import Blog from './Blog';
-import About from './About';
-import Login from './Login';
+import Work from './content/Work';
+import Blog from './content/Blog';
+import About from './content/About';
+import Login from './authentication/Login';
+import Register from './authentication/Register';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Route exact path="/login" component={Login}/>
+        <Route exact path="/signin" component={Register}/>
         { (!localStorage.getItem('isLoggedIn')) 
           ? (<Redirect to="login"/>)
           : (<div className="app-div">

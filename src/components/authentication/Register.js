@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import {onInputChange, checkEmail, checkPassword, handleLogin} from '../store/actions/authActions';
+import { connect } from 'react-redux';
+import {handleRegister} from '../../store/actions/authActions';
 
-class Login extends Component {
-
-  submitForm = () => e => {
-    e.preventDefault();
-    this.props.submitForm();
+class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      password: '',
+      email: '',
+      repeatedPassword: '',
+    }
   }
 
   render() {
-    if(localStorage.getItem('isLoggedIn')) {
-      return <Redirect to='work'/>
-    }
-    const {email, password, errorMessage} = this.props;
+    const {name, email, repeatedPassword, password} = this.state;
     return (
-      <div className="login-container">
+      <div>
         <div className="form-container">
           <form onSubmit={this.submitForm()}>
+            <div className="form-group ">
+              <label htmlFor="emailInput">Name</label>
+              <input
+                type="name"
+                value={name}
+                className="form-control form-control-lg"
+                id="nameInput"
+                onChange={(e)=>this.props.onInputChange(e)}/>
+            </div>
             <div className="form-group ">
               <label htmlFor="emailInput">Email address</label>
               <input
@@ -30,13 +39,23 @@ class Login extends Component {
                 onChange={(e)=>this.props.onInputChange(e)}/>
             </div>
             <div className="form-group">
-              <label htmlFor="passwordInput">Email address</label>
+              <label htmlFor="passwordInput">Password</label>
               <input
                 type="password"
                 value={password}
                 className="form-control form-control-lg"
                 id="passwordInput"
                 onBlur={this.props.checkPassword}
+                onChange={(e)=>this.props.onInputChange(e)}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="passwordInput">Repeat password</label>
+              <input
+                type="password"
+                value={repeatedPassword}
+                className="form-control form-control-lg"
+                id="passwordInput"
+                onBlur={this.props.checkRepeatedPassword}
                 onChange={(e)=>this.props.onInputChange(e)}/>
             </div>
             <div className="error-message">{errorMessage}</div>
@@ -50,6 +69,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    name: state.authReducer.name,
     email: state.authReducer.email,
     password: state.authReducer.password,
     isLoggedIn: state.authReducer.isLoggedIn,
@@ -59,11 +79,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInputChange: (e) => {dispatch(onInputChange(e))},
-    checkEmail: () => {dispatch(checkEmail())},
-    checkPassword: () => {dispatch(checkPassword())},
-    submitForm: () => {dispatch(handleLogin())}
+    submitForm: () => {dispatch(handleRegister())},
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
