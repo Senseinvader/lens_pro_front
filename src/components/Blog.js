@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {blogs} from '../helpers/blogs';
+import {fetchBlogPosts} from '../store/actions/contentActions';
 
-export default class Blog extends Component {
+class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,16 +14,18 @@ export default class Blog extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   const config = {
-  //     root: document.querySelector('.app-div')
-  //   }
-  //   const observer = new IntersectionObserver(
-  //     this.handleObserver.bind(this),
-  //     config
-  //   );
-  //   observer.observe(this.loadingRef)
-  // }
+  componentDidMount() {
+    // const config = {
+    //   root: document.querySelector('.app-div')
+    // }
+    // const observer = new IntersectionObserver(
+    //   this.handleObserver.bind(this),
+    //   config
+    // );
+    // observer.observe(this.loadingRef)
+
+    this.props.fetchBlogPosts();
+  }
 
   handleObserver(entities, observer) {
     const y = entities[0].boundingClientDirect.y;
@@ -40,6 +44,8 @@ export default class Blog extends Component {
       height: '30px'
     }
     const loadingTextCSS = { display: this.state.loading ? 'block' : 'none' };
+    const {posts} = this.props;
+
     return (
       <div className="blogs-container">
         <div className="card">
@@ -47,11 +53,11 @@ export default class Blog extends Component {
             <h2>Blog</h2>
           </div>
         </div>
-        { blogs.map((blog, i) => (
+        { posts.map((post, i) => (
           <div key={i} className="card">
             <div className="card-body">
-              <h5 className="card-title">{blog.title}</h5>
-              <p className="card-text">{blog.content}</p>
+              <h5 className="card-title">{post.title}</h5>
+              <p className="card-text">{post.content}</p>
               <a href="#" className="btn btn-primary">Go somewhere</a>
             </div>
           </div>
@@ -63,3 +69,18 @@ export default class Blog extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state.contentReducer.posts
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchBlogPosts: () => {dispatch(fetchBlogPosts());},
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blog);
