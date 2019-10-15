@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {onInputChange, checkEmail, checkPassword, handleSubmit} from '../store/actions/loginActions';
+import {onInputChange, checkEmail, checkPassword, handleLogin} from '../store/actions/authActions';
 
 class Login extends Component {
 
@@ -20,7 +20,7 @@ class Login extends Component {
         <div className="form-container">
           <form onSubmit={this.submitForm()}>
             <div className="form-group ">
-              <label forHtml="emailInput">Email address</label>
+              <label htmlFor="emailInput">Email address</label>
               <input
                 type="email"
                 value={email}
@@ -30,7 +30,7 @@ class Login extends Component {
                 onChange={(e)=>this.props.onInputChange(e)}/>
             </div>
             <div className="form-group">
-              <label for="passwordInput">Email address</label>
+              <label htmlFor="passwordInput">Email address</label>
               <input
                 type="password"
                 value={password}
@@ -50,10 +50,10 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    email: state.loginReducer.email,
-    password: state.loginReducer.password,
-    isLoggedIn: state.loginReducer.isLoggedIn,
-    errorMessage: state.loginReducer.errorMessage
+    email: state.authReducer.email,
+    password: state.authReducer.password,
+    isLoggedIn: state.authReducer.isLoggedIn,
+    errorMessage: state.authReducer.errorMessage
   }
 }
 
@@ -62,8 +62,8 @@ const mapDispatchToProps = (dispatch) => {
     onInputChange: (e) => {dispatch(onInputChange(e))},
     checkEmail: () => {dispatch(checkEmail())},
     checkPassword: () => {dispatch(checkPassword())},
-    submitForm: () => {dispatch(handleSubmit())}
+    submitForm: () => {dispatch(handleLogin())}
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
