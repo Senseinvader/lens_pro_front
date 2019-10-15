@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class Header extends Component {
 
   navContent = () => {
+    const {logOut, history} = this.props;
     return (
       <Fragment>
         <ul className="navbar-nav">
@@ -19,7 +20,7 @@ class Header extends Component {
           </li>
         </ul>
         <div className="logout-button">
-          <button type="button" onClick={this.props.logOut} className="btn btn-info">Logout</button>
+          <button type="button" onClick={()=>logOut(history)} className="btn btn-info">Logout</button>
         </div>
       </Fragment>
     )
@@ -38,17 +39,18 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.loginReducer.isLoggedIn
+    isLoggedIn: state.authReducer.isLoggedIn
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logOut: () => {
+    logOut: (history) => {
       localStorage.removeItem('isLoggedIn');
+      history.push('/login');
       dispatch({type: 'USER_LOGGED_OUT'});
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
