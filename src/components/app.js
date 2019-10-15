@@ -30,7 +30,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.loginReducer.isLoggedIn
+    isLoggedIn: state.authReducer.isLoggedIn
   }
 }
 

@@ -1,15 +1,17 @@
 const initState = {
   isLoggedIn: false,
+  name: '',
   email: '',
   password: '',
-  errorMessage: ''
+  errorMessage: '',
+  user: null,
 }
 
 
-const loginReducer = (state = initState, action) => {
+const authReducer = (state = initState, action) => {
   switch(action.type) {
     case 'USER_LOGGED_IN':
-      return {...state, isLoggedIn: true, email: '', password: '', errorMessage: ''};
+      return {...state, isLoggedIn: true, email: '', password: '', errorMessage: '', user: action.payload};
     case 'USER_LOGGED_OUT':
         return {...state, isLoggedIn: false};
     case 'EMAIL_CHANGED':
@@ -23,4 +25,4 @@ const loginReducer = (state = initState, action) => {
   }
 }
 
-export default loginReducer;
+export default authReducer;
