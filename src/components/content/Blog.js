@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
-import {blogs} from '../../helpers/blogs';
-import {fetchBlogPosts} from '../../store/actions/contentActions';
+import {fetchBlogPosts, redirectTo} from '../../store/actions/contentActions';
 
 class Blog extends Component {
   constructor(props) {
@@ -47,25 +46,30 @@ class Blog extends Component {
     const {posts} = this.props;
 
     return (
-      <div className="blogs-container">
-        <div className="card">
-          <div className="card-body">
-            <h2>Blog</h2>
-          </div>
-        </div>
-        { posts.map((post, i) => (
-          <div key={i} className="card">
+      <Fragment>
+        <div className="blogs-container">
+          <div className="card">
             <div className="card-body">
-              <h5 className="card-title">{post.title}</h5>
-              <p className="card-text">{post.content}</p>
-              <a href="#" className="btn btn-primary">Go somewhere</a>
+              <h2>Blog</h2>
             </div>
           </div>
-        ))}
-        <div style={loadingCSS} ref={loadingRef=>this.loadingRef = loadingRef}>
-          <span style={loadingTextCSS}>Loading...</span>
+          { posts.map((post, i) => (
+            <div key={i} className="card">
+              <div className="card-body">
+                <h5 className="card-title">{post.title}</h5>
+                <p className="card-text">{post.content}</p>
+                <a href="#" className="btn btn-primary">Read</a>
+              </div>
+            </div>
+          ))}
+          <div style={loadingCSS} ref={loadingRef=>this.loadingRef = loadingRef}>
+            <span style={loadingTextCSS}>Loading...</span>
+          </div>
         </div>
-      </div>
+        <div className="add-post-container">
+          <button className="btn btn-danger btn-lg btn-add-post" onClick={()=>redirectTo('/blog/new')}>+</button>
+        </div>
+      </Fragment>
     )
   }
 }
