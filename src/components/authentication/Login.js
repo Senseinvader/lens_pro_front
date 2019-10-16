@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Redirect, withRouter} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {onInputChange, checkEmail, checkPassword, handleLogin} from '../../store/actions/authActions';
+import {redirectTo} from '../../store/actions/contentActions';
 
 class Login extends Component {
 
   submitForm = () => e => {
     e.preventDefault();
     this.props.submitForm();
-  }
-
-  goToRegister = () => {
-    const {history} = this.props;
-    return history.push('/signup');
   }
 
   render() {
@@ -49,7 +45,7 @@ class Login extends Component {
           </form>
         </div>
         <div className="register-button-container">
-          <button className="btn btn-link" onClick={()=> this.goToRegister()}>New to the app? Sign Up</button>
+          <button className="btn btn-link" onClick={()=> redirectTo('/signup')}>New to the app? Sign Up</button>
         </div>
       </div>
     )
@@ -77,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
