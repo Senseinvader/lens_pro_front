@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <Route exact path="/login" component={Login}/>
-        <Route exact path="/signin" component={Register}/>
+        <Route exact path="/signup" component={Register}/>
         { (!localStorage.getItem('isLoggedIn')) 
           ? (<Redirect to="login"/>)
           : (<div className="app-div">

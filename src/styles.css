@@ -1,6 +1,7 @@
 .login-container {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -29,4 +30,9 @@
 .blogs-container {
   flex-direction: column;
   align-items: center;
+}
+.register-button-container {
+  display: flex;
+  width: 60vw;
+  justify-content: flex-end;
 }
