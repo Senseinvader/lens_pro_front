@@ -38,7 +38,7 @@
   justify-content: flex-end;
 }
 .add-post-container {
-  position: absolute;
+  position: fixed;
   right: 5%;
   top: 90%;
 }
@@ -47,4 +47,9 @@
 }
 .new-post-container {
   justify-content: flex-start;
+}
+.review-post-buttons-container {
+  display: flex;
+  flex-direction: row;
+  border: none;
 }

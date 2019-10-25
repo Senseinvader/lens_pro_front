@@ -19,9 +19,9 @@ class NewPostReview extends Component {
             <p className="card-text">{newPostContent}</p>
           </div>
         </div>
-        <div className="post-buttons-container">
-          <button className="btn btn-outline-primary">Cancel</button>
-          <button className="btn btn-primary" onClick={this.uploadBlogPost}>Post</button>
+        <div className="review-post-buttons-container card mx-auto mt-4">
+          <button className="btn btn-outline-primary mr-4">Cancel</button>
+          <button className="btn btn-primary mr-4" onClick={this.uploadBlogPost}>Post</button>
         </div>
       </Fragment>
     )
