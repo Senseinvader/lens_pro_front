@@ -2,6 +2,17 @@ import axios from 'axios';
 import {URL} from '../../keys/dev';
 import history from '../../helpers/history';
 
+export const onInputChange = (e) => {
+  switch(e.target.id) {
+    case 'postTitle':
+      return {type: "POST_TITLE_CHANGED", payload: e.target.value};
+    case 'postContent':
+      return {type: "POST_CONTENT_CHANGED", payload: e.target.value};
+    default:
+      return;
+  }
+}
+
 export const fetchBlogPosts = () => async (dispatch) => {
   try {
     const res = await axios({

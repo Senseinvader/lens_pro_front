@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {sendErrorMessage, onInputChange} from '../../store/actions/authActions';
-import {redirectTo} from '../../store/actions/contentActions';
+import {sendErrorMessage} from '../../store/actions/authActions';
+import {redirectTo, onInputChange} from '../../store/actions/contentActions';
 
 class NewPost extends Component {
 
