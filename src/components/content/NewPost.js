@@ -8,7 +8,7 @@ class NewPost extends Component {
   submitForm = () => e => {
     const {newPostTitle, newPostContent, sendErrorMessage} = this.props;
     e.preventDefault();
-    if(newPostTitle && newPostContent) redirectTo('/blog/new/review');
+    if(newPostTitle && newPostContent) redirectTo('/post/new/review');
     else sendErrorMessage('Please fill all fields');
   }
 
@@ -42,6 +42,7 @@ class NewPost extends Component {
               <label htmlFor="postContent">Post Content</label>
               <textarea
                 type="text"
+                rows="10"
                 value={newPostContent}
                 className="form-control form-control-lg"
                 id="postContent"
