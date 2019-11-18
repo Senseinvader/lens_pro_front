@@ -17,6 +17,8 @@ class Blog extends Component {
 
   componentDidMount() {
     const {history} = this.props;
+    window.ADRUM.markVirtualPageBegin("CustomBlog", true);
+    setTimeout(() => {window.ADRUM.markVirtualPageEnd();}, 200)
     // const config = {
     //   root: document.querySelector('.app-div')
     // }
@@ -30,6 +32,10 @@ class Blog extends Component {
     this.setState({userId: userId});
     this.props.fetchBlogPosts(userId);
   }
+
+  // componentWillUnmount() {
+  //   window.ADRUM.markVirtualPageEnd();
+  // }
 
   handleObserver(entities, observer) {
     const y = entities[0].boundingClientDirect.y;

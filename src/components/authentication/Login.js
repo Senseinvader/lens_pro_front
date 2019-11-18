@@ -9,6 +9,7 @@ class Login extends Component {
   submitForm = () => e => {
     e.preventDefault();
     this.props.submitForm();
+    window.ADRUM.markVirtualPageBegin("CustomLogin", false);
   }
 
   render() {
