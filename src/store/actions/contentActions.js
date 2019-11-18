@@ -13,15 +13,29 @@ export const onInputChange = (e) => {
   }
 }
 
-export const fetchBlogPosts = () => async (dispatch) => {
+export const fetchBlogPosts = (id) => async (dispatch) => {
+  let params;
+  if(id) {
+    params = new URLSearchParams();
+    params.append('id', id);
+  }
   try {
-    const res = await axios({
-      url: `${URL}/blogs`,
-      method: 'GET',
-      withCredentials: true
-    });
-    console.log(res.data);
-    dispatch({type: 'POSTS_FETCHED', payload: res.data.posts});
+    if(id==='myblog') {
+      console.log('fetching my posts')
+      const res = await axios({
+        url: `${URL}/myblogs`,
+        method: 'GET',
+        withCredentials: true
+      });
+      dispatch({type: 'POSTS_FETCHED', payload: res.data.posts});
+    } else {
+      const res = await axios({
+        url: `${URL}/blogs`,
+        method: 'GET',
+        withCredentials: true
+      });
+      dispatch({type: 'POSTS_FETCHED', payload: res.data.posts});
+    }
   } catch (err) {
     dispatch({type: 'ERROR_MESSAGE_SHOWN', payload: res.message});
   }
@@ -37,6 +51,7 @@ export const uploadBlogPost = () => async (dispatch, getState) => {
       data: {title: newPostTitle, content: newPostContent},
       withCredentials: true
     });
+    dispatch({type: 'POST_UPLOADED'});
     dispatch({type: 'POSTS_FETCHED', payload: res.data.posts});
   } catch (err) {
     dispatch({type: 'ERROR_MESSAGE_SHOWN', payload: res.message});
