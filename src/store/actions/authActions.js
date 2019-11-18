@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {URL} from '../../keys/dev';
 
 export const onInputChange = (e) => {
   switch(e.target.id) {
@@ -58,7 +59,7 @@ export const handleLogin = () => async (dispatch, getState) => {
   const {email, password} = getState().authReducer;
   try {
     const res = await axios({
-      url: 'http://localhost:3000/login',
+      url: `${URL}/login`,
       method: 'POST',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       data: {email, password},
@@ -79,7 +80,7 @@ export const handleRegister = () => async (dispatch, getState) => {
       return false;
     }
     const res = await axios({
-      url: 'http://localhost:3000/signup',
+      url: `${URL}/signup`,
       method: 'POST',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       data: {name, email, password},
