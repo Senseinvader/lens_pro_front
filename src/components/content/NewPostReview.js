@@ -6,7 +6,6 @@ class NewPostReview extends Component {
 
   uploadBlogPost = () => {
     this.props.uploadBlogPost();
-    redirectTo('/blog');
   }
 
   render() {

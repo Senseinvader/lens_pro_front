@@ -51,8 +51,9 @@ export const uploadBlogPost = () => async (dispatch, getState) => {
       data: {title: newPostTitle, content: newPostContent},
       withCredentials: true
     });
-    dispatch({type: 'POST_UPLOADED'});
     dispatch({type: 'POSTS_FETCHED', payload: res.data.posts});
+    dispatch({type: 'POST_UPLOADED'});
+    redirectTo('/blog/myblog');
   } catch (err) {
     dispatch({type: 'ERROR_MESSAGE_SHOWN', payload: res.message});
   }
