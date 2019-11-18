@@ -12,6 +12,8 @@ const contentReducer = (state = initState, action) => {
       return {...state, newPostTitle: action.payload};
     case 'POST_CONTENT_CHANGED':
       return {...state, newPostContent: action.payload};
+    case 'POST_UPLOADED':
+      return {...state, newPostTitle: '', newPostContent: ''};
     default:
       return state;
   }

@@ -18,6 +18,9 @@ class Header extends Component {
           <li className="nav-item">
             <Link className="nav-link" to={"/about"}>About</Link>
           </li>
+          <li className="nav-item" style={{marginLeft: 'auto'}}>
+            <Link className="nav-link" to={`/blog/myblog`}>My Blog</Link>
+          </li>
         </ul>
         <div className="logout-button">
           <button type="button" onClick={()=>logOut(history)} className="btn btn-info">Logout</button>
@@ -39,7 +42,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.authReducer.isLoggedIn
+    isLoggedIn: state.authReducer.isLoggedIn,
   }
 }
 

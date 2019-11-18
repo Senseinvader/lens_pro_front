@@ -22,11 +22,12 @@ class App extends Component {
           ? (<Redirect to="login"/>)
           : (<div className="app-div">
             <Header/>
-              <Route path="/" exact component={Work}/>
+              <Route path="/" render={() => (<Redirect to="/work" />)}/>
               <Route path="/work" component={Work}/>
               <Route path="/blog" exact component={Blog}/>
-              <Route path="/blog/new" exact component={NewPost}/>
-              <Route path="/blog/new/review" exact component={NewPostReview}/>
+              <Route path={`/blog/myblog`} exact component={Blog}/>
+              <Route path="/post/new" exact component={NewPost}/>
+              <Route path="/post/new/review" exact component={NewPostReview}/>
               <Route path="/about" component={About}/>
             </div>
           )
