@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {fetchBlogPosts, redirectTo} from '../../store/actions/contentActions';
 
 class Blog extends Component {
@@ -9,11 +10,13 @@ class Blog extends Component {
       page: 0,
       prevY: 0,
       loading: false,
-      posts: []
+      posts: [],
+      userId: ''
     }
   }
 
   componentDidMount() {
+    const {history} = this.props;
     // const config = {
     //   root: document.querySelector('.app-div')
     // }
@@ -23,7 +26,9 @@ class Blog extends Component {
     // );
     // observer.observe(this.loadingRef)
 
-    this.props.fetchBlogPosts();
+    const userId = history && history.location.pathname.split('/')[2];
+    this.setState({userId: userId});
+    this.props.fetchBlogPosts(userId);
   }
 
   handleObserver(entities, observer) {
@@ -44,16 +49,17 @@ class Blog extends Component {
     }
     const loadingTextCSS = { display: this.state.loading ? 'block' : 'none' };
     const {posts} = this.props;
+    const {userId} = this.state;
 
     return (
       <Fragment>
         <div className="blogs-container">
           <div className="card">
             <div className="card-body">
-              <h2>Blog</h2>
+              <h2>{userId ? 'My Blog' : 'Blog'}</h2>
             </div>
           </div>
-          { posts.map((post, i) => (
+          { posts ? posts.map((post, i) => (
             <div key={i} className="card">
               <div className="card-body">
                 <h5 className="card-title">{post.title}</h5>
@@ -61,13 +67,17 @@ class Blog extends Component {
                 <a href="#" className="btn btn-primary">Read</a>
               </div>
             </div>
-          ))}
+          )) : (
+            <div className="card-body">
+              <p className="card-text">You don't have your posts created yet</p>
+            </div>
+          )}
           <div style={loadingCSS} ref={loadingRef=>this.loadingRef = loadingRef}>
             <span style={loadingTextCSS}>Loading...</span>
           </div>
         </div>
         <div className="add-post-container">
-          <button className="btn btn-danger btn-lg btn-add-post" onClick={()=>redirectTo('/blog/new')}>+</button>
+          <button className="btn btn-danger btn-lg btn-add-post" onClick={()=>redirectTo('/post/new')}>+</button>
         </div>
       </Fragment>
     )
@@ -82,9 +92,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchBlogPosts: () => {dispatch(fetchBlogPosts());},
+    fetchBlogPosts: (id) => {dispatch(fetchBlogPosts(id));},
 
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Blog);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Blog));
